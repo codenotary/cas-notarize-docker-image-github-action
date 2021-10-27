@@ -34,7 +34,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: localhost:5000/codenotary/hello-cas-world:latest
+          tags: codenotary/hello-cas-world:latest
   
       - name: debug
         run: docker image ls
@@ -49,5 +49,5 @@ jobs:
         uses: codenotary/cas-notarize-docker-image-github-action@main
         with:
           # make it notarize it's own Docker image B-)
-          asset: docker://localhost:5000/codenotary/hello-cas-world:latest
+          asset: docker://codenotary/hello-cas-world:latest
           cas_api_key: ${{ secrets.CAS_API_KEY }}
