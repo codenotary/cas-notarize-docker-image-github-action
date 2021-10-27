@@ -15,33 +15,11 @@ jobs:
           - 5000:5000
 
     steps:
-      #--> Build Docker image and push it to the local registry- checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.review.commit_id }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          driver-opts: network=host
-
-      - name: Build Docker image and push it to the local registry
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: codenotary/hello-cas-world:latest
-  
+      # Pull an image to notarize; This is where you'd build your local image instead using your preferred method
       - name: debug
-        run: docker image ls
+        run: docker pull codenotary/cas:latest
         shell: bash
-      
-        
-      #<--
+
 
       - name: Notarize Docker image
         #--> Run the GitHub action
@@ -49,5 +27,5 @@ jobs:
         uses: codenotary/cas-notarize-docker-image-github-action@main
         with:
           # make it notarize it's own Docker image B-)
-          asset: docker://codenotary/hello-cas-world:latest
+          asset: docker://codenotary/cas:latest
           cas_api_key: ${{ secrets.CAS_API_KEY }}
