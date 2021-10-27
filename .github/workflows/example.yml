@@ -35,6 +35,12 @@ jobs:
           context: .
           push: true
           tags: localhost:5000/codenotary/hello-cas-world:latest
+  
+      - name: debug
+        run: docker image ls
+        shell: bash
+      
+        
       #<--
 
       - name: Notarize Docker image
