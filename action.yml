@@ -16,6 +16,4 @@ runs:
   args:
     - n
     - ${{ inputs.asset }}
-    - --api-key
-    - ${{ inputs.cas_api_key }}
-    # - --bom
+    - --api-key=${{ inputs.cas_api_key }}
