@@ -43,5 +43,5 @@ jobs:
         uses: codenotary/cas-notarize-docker-image-github-action@main
         with:
           # make it notarize it's own Docker image B-)
-          asset: docker://codenotary/hello-cas-world:latest
+          asset: docker://localhost:5000/codenotary/hello-cas-world:latest
           cas_api_key: ${{ secrets.CAS_API_KEY }}
