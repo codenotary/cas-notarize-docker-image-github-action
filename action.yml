@@ -13,7 +13,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://codenotary/cas:bom-docker'
+  entrypoint: '/bin/sh'
   args:
     - n
     - ${{ inputs.asset }}
     - --api-key=${{ inputs.cas_api_key }}
+    - --host cas.codenotary.com
